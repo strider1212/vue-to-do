@@ -5,7 +5,7 @@ export default {
   data() {
     return {
       newTodo: "",
-      todos: [{ id: id++, text: "test text" }],
+      todos: [],
       testDynamicText: "Vue To-Do List",
     };
   },
@@ -13,6 +13,9 @@ export default {
     addTodo() {
       this.todos.push({ id: id++, text: this.newTodo });
       this.newTodo = "";
+    },
+    removeTodo(todo) {
+      this.todos = this.todos.filter((t) => t !== todo);
     },
   },
 };
@@ -27,6 +30,7 @@ export default {
   <ul>
     <li v-for="todo in todos" :key="todo.id">
       {{ todo.text }}
+      <button @click="removeTodo(todo)">X</button>
     </li>
   </ul>
 </template>
