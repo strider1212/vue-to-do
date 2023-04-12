@@ -4,7 +4,7 @@ let id = 0;
 export default {
   data() {
     return {
-      newTodo: "test",
+      newTodo: "",
       todos: [{ id: id++, text: "test text" }],
       testDynamicText: "Vue To-Do List",
     };
@@ -12,6 +12,7 @@ export default {
   methods: {
     addTodo() {
       this.todos.push({ id: id++, text: this.newTodo });
+      this.newTodo = "";
     },
   },
 };
@@ -20,6 +21,7 @@ export default {
 <template>
   <h1>{{ testDynamicText }}</h1>
   <form @submit.prevent="addTodo">
+    <input type="text" v-model="newTodo" />
     <button>Add To-Do</button>
   </form>
   <ul>
