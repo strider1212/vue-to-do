@@ -1,21 +1,24 @@
 <script>
+let id = 0;
+
 export default {
   data() {
     return {
-      testState: "testing",
+      todos: [{ id: id++, text: "test text" }],
+      testDynamicText: "Vue To-Do List",
     };
   },
-  methods: {
-    test() {
-      console.log(this.testState);
-    },
-  },
+  methods: {},
 };
 </script>
 
 <template>
-  <h1>Vue To-Do List</h1>
-  <button @click="test">test</button>
+  <h1>{{ testDynamicText }}</h1>
+  <ul>
+    <li v-for="todo in todos" :key="todo.id">
+      {{ todo.text }}
+    </li>
+  </ul>
 </template>
 
 <style></style>
