@@ -11,7 +11,7 @@ export default {
   },
   methods: {
     addTodo() {
-      this.todos.push({ id: id++, text: this.newTodo });
+      this.todos.push({ id: id++, text: this.newTodo, done: false });
       this.newTodo = "";
     },
     removeTodo(todo) {
@@ -29,10 +29,15 @@ export default {
   </form>
   <ul>
     <li v-for="todo in todos" :key="todo.id">
-      {{ todo.text }}
+      <input type="checkbox" v-model="todo.done" />
+      <span :class="{ done: todo.done }">{{ todo.text }}</span>
       <button @click="removeTodo(todo)">X</button>
     </li>
   </ul>
 </template>
 
-<style></style>
+<style>
+.done {
+  text-decoration: line-through;
+}
+</style>
